@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 # Load some packages
-from sympy import *
 import numpy as np
 import scipy as sp
 from scipy.stats import skew
@@ -16,7 +15,9 @@ parser.add_argument('-p1', type=float, dest='p1', help='set the lowest period (d
 parser.add_argument('-p2', type=float, dest='p2', help='set the lowest period (default: 10.0 seconds)', default=10.0)
 parser.add_argument('-maxdiff', type=float, dest='maxdiff', help='maximum time difference to use (default: 3600.0 seconds)', default=3600.0)
 parser.add_argument('-mjd', dest='mjd', help='flag input times as MJD rather than seconds (default: false)', default=False)
-parser.add_argument('--version', action='version', version='%(prog)s 0.0.2')
+parser.add_argument('-pstep', dest='pstep', help='trial period step size in milliseconds (default: 1.0)', default=1.0)
+parser.add_argument('-tol', dest='tol', help='percentage tolerance in phase to count as a match (default: 10.0)', default=10.0)
+parser.add_argument('--version', action='version', version='%(prog)s 0.0.3')
 args = parser.parse_args()
 
 ## Read in data
@@ -35,7 +36,7 @@ if mjd:
 
 ## Get the time differences
 maxdiff = args.maxdiff
-pstep = 0.001
+pstep = args.pstep*0.001
 diffs = np.zeros(ntimes*ntimes)
 k = 0
 for i in range(0,ntimes):
@@ -60,7 +61,7 @@ nsteps = int((p2 - p1)/pstep)
 print "Searching from",p1,"to",p2,"in",nsteps,"steps"
 
 # Number of matches within 10 percent
-phase_tol = 0.10
+phase_tol = args.tol*0.01
 periods = np.zeros(nsteps)
 matches = np.zeros(nsteps)
 for i in range(0,nsteps):
