@@ -17,7 +17,7 @@ parser.add_argument('-days', dest='days', help='plot output in days rather than 
 parser.add_argument('-maxdiff', type=float, dest='maxdiff', help='maximum time difference to use (default: 3600.0 seconds)', default=3600.0)
 parser.add_argument('-mjd', dest='mjd', help='flag input times as MJD rather than seconds (default: false)', default=False)
 parser.add_argument('-pstep', type=float, dest='pstep', help='trial period step size in seconds (default: 0.001)', default=0.001)
-parser.add_argument('-tol', dest='tol', help='percentage tolerance in phase to count as a match (default: 10.0)', default=10.0)
+parser.add_argument('-tol', type=float, dest='tol', help='percentage tolerance in phase to count as a match (default: 10.0)', default=10.0)
 parser.add_argument('--version', action='version', version='%(prog)s 0.0.3')
 args = parser.parse_args()
 
