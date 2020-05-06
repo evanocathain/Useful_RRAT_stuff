@@ -15,7 +15,7 @@ https://arxiv.org/abs/2001.10275. To have a look at that one could
 just run the data from their Extended Data Table 1, in the following
 way, to get a plot like that in period.png
 
-> python getper.py -i CHIME_seconds -p1 86400.0 -p2 8640000.0 -maxdiff 86400000.0 -pstep 8640.0 -days 1
+> python getper.py CHIME_seconds -p1 86400.0 -p2 8640000.0 -maxdiff 86400000.0 -pstep 8640.0 -days
 
 run with a -h to see what the options are.
 
