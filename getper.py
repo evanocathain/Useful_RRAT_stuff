@@ -1,4 +1,9 @@
-#!/usr/bin/env python
+#
+# Determine periodicity by arrival time differencing.
+#
+# 2020 Fabian Jankowski: slightly reworked the code and formatting. It
+# works with python 2 and 3 now.
+#
 
 import argparse
 import os.path
