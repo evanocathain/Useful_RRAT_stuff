@@ -138,14 +138,14 @@ def main():
 
     print("Reading input from file: {}".format(args.filename))
     times = np.genfromtxt(args.filename)
-    times.sort()
+    times = np.sort(times)
     ntimes = np.size(times)
     print("Total number of pulse times: {0}".format(ntimes))
     print("Total number of unique time differences: {0}".format(ntimes * (ntimes - 1) / 2.0))
 
     # If input times in MJD, convert to seconds
     if args.mjd:
-        times = (times - int(times[0])) * 86400.0
+        times = (times - int(np.floor(times[0]))) * 86400.0
 
     ## Get the time differences
     maxdiff = args.maxdiff
@@ -154,14 +154,14 @@ def main():
     for i in range(0, ntimes):
         for j in range(0, ntimes):
             diff = times[j] - times[i]
-            if ( np.abs(diff) <= maxdiff):
-                if ( diff < 0.0 ):
+            if np.abs(diff) <= maxdiff:
+                if diff < 0.0:
                     diffs[k] = - diff
                 else:
                     diffs[k] = diff
                 k = k+1
 
-    diffs.sort()
+    diffs = np.sort(diffs)
     diffs_unique = np.unique(diffs)
     print("Total number of unique time differences less than {0} seconds: {1}".format(
         maxdiff,
