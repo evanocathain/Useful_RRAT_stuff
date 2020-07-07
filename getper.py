@@ -3,7 +3,7 @@
 # Load some packages
 import numpy as np
 import scipy as sp
-from scipy.stats import skew
+#from scipy.stats import skew
 import matplotlib.pylab as plt
 import argparse
 import sys
@@ -24,12 +24,12 @@ args = parser.parse_args()
 ## Read in data
 # Read in barycentred times
 input_file = args.input_file
-print "Reading input from file:",input_file
+print ("Reading input from file:",input_file)
 times = np.genfromtxt(input_file)
 times.sort()
 ntimes = np.size(times)
-print "Total number of pulse times:",ntimes
-print "Total number of unique time differences:",ntimes*(ntimes-1)/2
+print ("Total number of pulse times:",ntimes)
+print ("Total number of unique time differences:",ntimes*(ntimes-1)/2)
 # If input times in MJD, convert to seconds
 mjd = args.mjd
 if mjd:
@@ -52,15 +52,15 @@ for i in range(0,ntimes):
             k = k+1
 diffs.sort()
 diffs_unique = np.unique(diffs)
-print "Total number of unique time differences less than ",maxdiff," seconds:",np.size(diffs_unique)
-print diffs_unique
+print ("Total number of unique time differences less than ",maxdiff," seconds:",np.size(diffs_unique))
+print (diffs_unique)
 
 ## Search period range
 p1 = args.p1
 p2 = args.p2
 #pstep = 0.001
 nsteps = int((p2 - p1)/pstep)
-print "Searching from",p1,"to",p2,"in",nsteps,"steps"
+print ("Searching from",p1,"to",p2,"in",nsteps,"steps")
 
 # Number of matches within 10 percent
 phase_tol = args.tol*0.01
