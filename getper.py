@@ -44,6 +44,7 @@ samples0 = np.array(times).reshape(-1, 1)
 samples1 = np.array(times).reshape(1, -1)
 
 delta = np.triu(np.abs(samples0 - samples1))
+delta = delta[delta < maxdiff]
 diffs_unique = np.unique(delta).reshape(1,-1)
 
 print("Total number of unique time differences less than ",maxdiff," seconds:",np.size(diffs_unique))
