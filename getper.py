@@ -3,7 +3,7 @@
 # Load some packages
 import numpy as np
 import scipy as sp
-from scipy.stats import skew
+#from scipy.stats import skew
 import matplotlib.pylab as plt
 import argparse
 import sys
